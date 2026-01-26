@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TravelApp | نسافر ونبرمج</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;500;700&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Tajawal', sans-serif; }
+        .gradient-text {
+            background: linear-gradient(to right, #3b82f6, #8b5cf6);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+    </style>
+</head>
+<body class="bg-gray-50 text-gray-800">
+
+    <nav class="flex justify-between items-center p-6 max-w-6xl mx-auto">
+        <div class="text-2xl font-bold tracking-tighter">Travel<span class="text-blue-600">App</span></div>
+        <div class="space-x-4 space-x-reverse">
+            <a href="#apps" class="hover:text-blue-600 transition">تطبيقاتنا</a>
+            <a href="#about" class="hover:text-blue-600 transition">من نحن</a>
+            <a href="#contact" class="px-4 py-2 bg-black text-white rounded-full hover:bg-gray-800 transition">تابعنا</a>
+        </div>
+    </nav>
+
+    <header class="text-center py-20 px-4">
+        <h1 class="text-5xl md:text-7xl font-bold mb-6">
+            نحن نستكشف العالم، <br>
+            <span class="gradient-text">والذكاء الاصطناعي رفيقنا.</span>
+        </h1>
+        <p class="text-xl text-gray-600 mb-8 max-w-2xl mx-auto">
+            3 طلاب من الجزائر، ندمج متعة السفر بقوة البرمجة. نصنع تطبيقات تحل مشاكل المسافرين الحقيقية.
+        </p>
+        <div class="flex justify-center gap-4">
+            <a href="#apps" class="px-8 py-3 bg-blue-600 text-white rounded-lg font-bold hover:bg-blue-700 transition shadow-lg">جرب تطبيقاتنا</a>
+            <a href="https://youtube.com/@YourChannel" target="_blank" class="px-8 py-3 bg-white border border-gray-300 text-gray-700 rounded-lg font-bold hover:bg-gray-50 transition flex items-center gap-2">
+                شاهد الفلوقات
+                <svg class="w-5 h-5 text-red-600" fill="currentColor" viewBox="0 0 24 24"><path d="M19.615 3.184c-3.604-.246-11.631-.245-15.23 0-3.897.266-4.356 2.62-4.385 8.816.029 6.185.484 8.549 4.385 8.816 3.6.245 11.626.246 15.23 0 3.897-.266 4.356-2.62 4.385-8.816-.029-6.185-.484-8.549-4.385-8.816zm-10.615 12.816v-8l8 3.993-8 4.007z"/></svg>
+            </a>
+        </div>
+    </header>
+
+    <section id="apps" class="py-16 bg-white">
+        <div class="max-w-6xl mx-auto px-4">
+            <h2 class="text-3xl font-bold mb-12 text-center">أحدث ابتكاراتنا</h2>
+            
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="border border-gray-100 rounded-2xl p-6 shadow-xl hover:shadow-2xl transition bg-gradient-to-br from-white to-blue-50">
+                    <div class="text-4xl mb-4">🏺</div>
+                    <h3 class="text-xl font-bold mb-2">كاشف الجودة (Souvenir Check)</h3>
+                    <p class="text-gray-600 mb-4 text-sm">تطبيق يكشف لك هل السلعة التقليدية أصلية أم مقلدة باستخدام تحليل الصور الدقيق.</p>
+                    <a href="#" class="text-blue-600 font-bold hover:underline flex items-center gap-1">جرب التطبيق <span>&larr;</span></a>
+                </div>
+
+                <div class="border border-gray-100 rounded-2xl p-6 shadow-xl hover:shadow-2xl transition">
+                    <div class="text-4xl mb-4">🏰</div>
+                    <h3 class="text-xl font-bold mb-2">المرشد الساخر</h3>
+                    <p class="text-gray-600 mb-4 text-sm">مرشد سياحي شخصي يحكي لك قصص الأماكن بأسلوب قصصي ممتع وساخر باللهجة الجزائرية.</p>
+                    <a href="#" class="text-blue-600 font-bold hover:underline flex items-center gap-1">شاهد الفيديو <span>&larr;</span></a>
+                </div>
+
+                <div class="border border-gray-100 rounded-2xl p-6 shadow-xl hover:shadow-2xl transition">
+                    <div class="text-4xl mb-4">🍲</div>
+                    <h3 class="text-xl font-bold mb-2">شيف الطوارئ</h3>
+                    <p class="text-gray-600 mb-4 text-sm">صور المكونات العشوائية معك في التخييم، وسيعطيك الذكاء الاصطناعي أفضل وصفة ممكنة.</p>
+                    <a href="#" class="text-gray-400 font-bold cursor-not-allowed">قريباً...</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer id="contact" class="bg-gray-900 text-white py-12">
+        <div class="max-w-4xl mx-auto px-4 text-center">
+            <h2 class="text-2xl font-bold mb-6">كن جزءاً من رحلتنا</h2>
+            <div class="flex justify-center gap-6 mb-8">
+                <a href="#" class="hover:text-blue-400 transition transform hover:scale-110">Instagram</a>
+                <a href="#" class="hover:text-blue-400 transition transform hover:scale-110">TikTok</a>
+                <a href="#" class="hover:text-blue-400 transition transform hover:scale-110">YouTube</a>
+                <a href="#" class="hover:text-blue-400 transition transform hover:scale-110">GitHub</a>
+            </div>
+            <p class="text-gray-500 text-sm">© 2026 TravelApp Project. صنع بكل ❤️ في الجزائر.</p>
+        </div>
+    </footer>
+
+</body>
+</html>
