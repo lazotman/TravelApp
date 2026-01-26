@@ -7,66 +7,95 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;500;700&display=swap" rel="stylesheet">
     <style>
-        body { font-family: 'Tajawal', sans-serif; }
+        body { font-family: 'Tajawal', sans-serif; scroll-behavior: smooth; }
         .gradient-text {
             background: linear-gradient(to right, #3b82f6, #8b5cf6);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
         }
+        /* إخفاء النافذة المنبثقة افتراضياً */
+        #videoModal { display: none; }
     </style>
 </head>
 <body class="bg-gray-50 text-gray-800">
 
-    <nav class="flex justify-between items-center p-6 max-w-6xl mx-auto">
-        <div class="text-2xl font-bold tracking-tighter">Travel<span class="text-blue-600">App</span></div>
-        <div class="space-x-4 space-x-reverse">
-            <a href="#apps" class="hover:text-blue-600 transition">تطبيقاتنا</a>
-            <a href="#about" class="hover:text-blue-600 transition">من نحن</a>
-            <a href="#contact" class="px-4 py-2 bg-black text-white rounded-full hover:bg-gray-800 transition">تابعنا</a>
+    <nav class="flex justify-between items-center p-6 max-w-6xl mx-auto sticky top-0 bg-gray-50/90 backdrop-blur-md z-40">
+        <div class="text-2xl font-bold tracking-tighter cursor-pointer" onclick="window.scrollTo(0,0)">Travel<span class="text-blue-600">App</span></div>
+        <div class="space-x-4 space-x-reverse text-sm md:text-base">
+            <a href="#apps" class="hover:text-blue-600 transition font-medium">تطبيقاتنا</a>
+            <a href="#about" class="hover:text-blue-600 transition font-medium">من نحن</a>
+            <a href="#contact" class="hidden md:inline-block px-4 py-2 bg-black text-white rounded-full hover:bg-gray-800 transition">تابعنا</a>
         </div>
     </nav>
 
     <header class="text-center py-20 px-4">
-        <h1 class="text-5xl md:text-7xl font-bold mb-6">
+        <h1 class="text-4xl md:text-6xl font-bold mb-6 leading-tight">
             نحن نستكشف العالم، <br>
             <span class="gradient-text">والذكاء الاصطناعي رفيقنا.</span>
         </h1>
-        <p class="text-xl text-gray-600 mb-8 max-w-2xl mx-auto">
-            3 طلاب من الجزائر، ندمج متعة السفر بقوة البرمجة. نصنع تطبيقات تحل مشاكل المسافرين الحقيقية.
+        <p class="text-lg md:text-xl text-gray-600 mb-8 max-w-2xl mx-auto">
+            فريق من الشباب الجزائري، ندمج متعة السفر بقوة البرمجة. نصنع تطبيقات تحل مشاكل المسافرين الحقيقية وتوثق اللحظات بذكاء.
         </p>
-        <div class="flex justify-center gap-4">
-            <a href="#apps" class="px-8 py-3 bg-blue-600 text-white rounded-lg font-bold hover:bg-blue-700 transition shadow-lg">جرب تطبيقاتنا</a>
-            <a href="https://youtube.com/@YourChannel" target="_blank" class="px-8 py-3 bg-white border border-gray-300 text-gray-700 rounded-lg font-bold hover:bg-gray-50 transition flex items-center gap-2">
-                شاهد الفلوقات
-                <svg class="w-5 h-5 text-red-600" fill="currentColor" viewBox="0 0 24 24"><path d="M19.615 3.184c-3.604-.246-11.631-.245-15.23 0-3.897.266-4.356 2.62-4.385 8.816.029 6.185.484 8.549 4.385 8.816 3.6.245 11.626.246 15.23 0 3.897-.266 4.356-2.62 4.385-8.816-.029-6.185-.484-8.549-4.385-8.816zm-10.615 12.816v-8l8 3.993-8 4.007z"/></svg>
-            </a>
+        <div class="flex justify-center gap-4 flex-wrap">
+            <a href="#apps" class="px-8 py-3 bg-blue-600 text-white rounded-lg font-bold hover:bg-blue-700 transition shadow-lg transform hover:-translate-y-1">اكتشف التطبيقات</a>
+            <a href="#about" class="px-8 py-3 bg-white border border-gray-300 text-gray-700 rounded-lg font-bold hover:bg-gray-50 transition">اقرأ قصتنا</a>
         </div>
     </header>
 
     <section id="apps" class="py-16 bg-white">
         <div class="max-w-6xl mx-auto px-4">
-            <h2 class="text-3xl font-bold mb-12 text-center">أحدث ابتكاراتنا</h2>
+            <h2 class="text-3xl font-bold mb-4 text-center">أحدث ابتكاراتنا</h2>
+            <p class="text-gray-500 text-center mb-12 max-w-xl mx-auto">اضغط على أي تطبيق لمشاهدة فيديو توضيحي لكيفية عمله.</p>
             
             <div class="grid md:grid-cols-3 gap-8">
-                <div class="border border-gray-100 rounded-2xl p-6 shadow-xl hover:shadow-2xl transition bg-gradient-to-br from-white to-blue-50">
-                    <div class="text-4xl mb-4">🏺</div>
-                    <h3 class="text-xl font-bold mb-2">كاشف الجودة (Souvenir Check)</h3>
+                <div class="group border border-gray-100 rounded-2xl p-6 shadow-xl hover:shadow-2xl transition bg-gradient-to-br from-white to-blue-50 cursor-pointer" onclick="openModal('كاشف الجودة', 'فيديو توضيحي قريباً...')">
+                    <div class="flex justify-between items-start mb-4">
+                        <div class="text-4xl bg-white p-3 rounded-full shadow-sm">🏺</div>
+                        <span class="bg-blue-100 text-blue-800 text-xs px-2 py-1 rounded-full font-bold">الأكثر طلباً</span>
+                    </div>
+                    <h3 class="text-xl font-bold mb-2 group-hover:text-blue-600 transition">كاشف الجودة</h3>
                     <p class="text-gray-600 mb-4 text-sm">تطبيق يكشف لك هل السلعة التقليدية أصلية أم مقلدة باستخدام تحليل الصور الدقيق.</p>
-                    <a href="#" class="text-blue-600 font-bold hover:underline flex items-center gap-1">جرب التطبيق <span>&larr;</span></a>
+                    <div class="text-blue-600 font-bold text-sm flex items-center gap-1">شاهد الفيديو <span class="text-xl">▶</span></div>
                 </div>
 
-                <div class="border border-gray-100 rounded-2xl p-6 shadow-xl hover:shadow-2xl transition">
-                    <div class="text-4xl mb-4">🏰</div>
-                    <h3 class="text-xl font-bold mb-2">المرشد الساخر</h3>
+                <div class="group border border-gray-100 rounded-2xl p-6 shadow-xl hover:shadow-2xl transition cursor-pointer" onclick="openModal('المرشد الساخر', 'فيديو توضيحي قريباً...')">
+                    <div class="text-4xl mb-4 bg-gray-50 w-fit p-3 rounded-full">🏰</div>
+                    <h3 class="text-xl font-bold mb-2 group-hover:text-blue-600 transition">المرشد الساخر</h3>
                     <p class="text-gray-600 mb-4 text-sm">مرشد سياحي شخصي يحكي لك قصص الأماكن بأسلوب قصصي ممتع وساخر باللهجة الجزائرية.</p>
-                    <a href="#" class="text-blue-600 font-bold hover:underline flex items-center gap-1">شاهد الفيديو <span>&larr;</span></a>
+                    <div class="text-blue-600 font-bold text-sm flex items-center gap-1">شاهد الفيديو <span class="text-xl">▶</span></div>
                 </div>
 
-                <div class="border border-gray-100 rounded-2xl p-6 shadow-xl hover:shadow-2xl transition">
-                    <div class="text-4xl mb-4">🍲</div>
-                    <h3 class="text-xl font-bold mb-2">شيف الطوارئ</h3>
+                <div class="group border border-gray-100 rounded-2xl p-6 shadow-xl hover:shadow-2xl transition cursor-pointer" onclick="openModal('شيف الطوارئ', 'فيديو توضيحي قريباً...')">
+                    <div class="text-4xl mb-4 bg-gray-50 w-fit p-3 rounded-full">🍲</div>
+                    <h3 class="text-xl font-bold mb-2 group-hover:text-blue-600 transition">شيف الطوارئ</h3>
                     <p class="text-gray-600 mb-4 text-sm">صور المكونات العشوائية معك في التخييم، وسيعطيك الذكاء الاصطناعي أفضل وصفة ممكنة.</p>
-                    <a href="#" class="text-gray-400 font-bold cursor-not-allowed">قريباً...</a>
+                    <div class="text-blue-600 font-bold text-sm flex items-center gap-1">شاهد الفيديو <span class="text-xl">▶</span></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="about" class="py-20 bg-gray-50">
+        <div class="max-w-4xl mx-auto px-4 text-center md:text-right">
+            <div class="md:flex items-center gap-12">
+                <div class="flex-1 mb-8 md:mb-0">
+                    <h2 class="text-3xl font-bold mb-6">من نحن؟</h2>
+                    <p class="text-gray-600 mb-4 leading-relaxed">
+                        نحن مجموعة من الطلاب الشغوفين بالتكنولوجيا والسفر. بدأت قصتنا عندما لاحظنا أن تجربة السفر تحتاج إلى "لمسة ذكية" تجعلها أسهل وأكثر متعة.
+                    </p>
+                    <p class="text-gray-600 mb-6 leading-relaxed">
+                        بدلاً من مجرد استهلاك المحتوى، قررنا صناعة أدواتنا الخاصة. نستخدم أحدث تقنيات الذكاء الاصطناعي (Gemini AI) لبناء تطبيقات صغيرة تحل مشاكل نواجهها يومياً في رحلاتنا، ونشارك الكود والتجربة معكم.
+                    </p>
+                    <ul class="text-sm font-bold text-gray-800 space-y-2">
+                        <li class="flex items-center gap-2"><span class="text-blue-600">✓</span> نبرمج في العلن (Build in Public)</li>
+                        <li class="flex items-center gap-2"><span class="text-blue-600">✓</span> محتوى تعليمي وترفيهي</li>
+                        <li class="flex items-center gap-2"><span class="text-blue-600">✓</span> نشجع السياحة الداخلية بذكاء</li>
+                    </ul>
+                </div>
+                <div class="flex-1 flex justify-center">
+                    <div class="w-64 h-64 bg-gray-200 rounded-full flex items-center justify-center text-4xl shadow-inner">
+                        ✈️💻🇩🇿
+                    </div>
                 </div>
             </div>
         </div>
@@ -84,6 +113,51 @@
             <p class="text-gray-500 text-sm">© 2026 TravelApp Project. صنع بكل ❤️ في الجزائر.</p>
         </div>
     </footer>
+
+    <div id="videoModal" class="fixed inset-0 bg-black/80 z-50 flex items-center justify-center backdrop-blur-sm p-4 transition-opacity duration-300">
+        <div class="bg-white rounded-2xl w-full max-w-2xl overflow-hidden shadow-2xl relative animate-bounce-in">
+            <button onclick="closeModal()" class="absolute top-4 right-4 bg-gray-100 hover:bg-red-100 text-gray-800 hover:text-red-600 rounded-full p-2 transition z-10">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+            </button>
+            
+            <div class="p-6">
+                <h3 id="modalTitle" class="text-2xl font-bold mb-4 pr-8">عنوان التطبيق</h3>
+                <div class="aspect-video bg-gray-900 rounded-xl flex items-center justify-center relative overflow-hidden group">
+                    <p id="modalVideoState" class="text-white text-lg font-medium">سيتم رفع الفيديو قريباً...</p>
+                    
+                    <div id="videoContainer" class="absolute inset-0 hidden">
+                        </div>
+                </div>
+                <p class="mt-4 text-gray-600 text-sm">اشترك في القناة ليصلك إشعار فور نشر الفيديو.</p>
+                <a href="https://youtube.com" target="_blank" class="mt-4 block w-full py-3 bg-red-600 text-white text-center rounded-lg font-bold hover:bg-red-700 transition">الذهاب لقناتنا على يوتيوب</a>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const modal = document.getElementById('videoModal');
+        const modalTitle = document.getElementById('modalTitle');
+        const modalVideoState = document.getElementById('modalVideoState');
+
+        function openModal(appName, videoMessage) {
+            modalTitle.textContent = appName;
+            modalVideoState.textContent = videoMessage || "سيتم توفير الفيديو قريباً...";
+            modal.style.display = 'flex';
+            document.body.style.overflow = 'hidden'; // Prevent background scrolling
+        }
+
+        function closeModal() {
+            modal.style.display = 'none';
+            document.body.style.overflow = 'auto'; // Restore scrolling
+        }
+
+        // Close modal when clicking outside
+        modal.addEventListener('click', function(e) {
+            if (e.target === modal) {
+                closeModal();
+            }
+        });
+    </script>
 
 </body>
 </html>
