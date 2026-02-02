@@ -229,67 +229,78 @@
             document.getElementById('listModal').classList.remove('flex');
         }
     </script>
-    <script>
-        // رابط جدولك المباشر (CSV)
+        <script>
+        // رابط الجدول (نفس الرابط السابق)
         const sheetURL = 'https://docs.google.com/spreadsheets/d/1El6Hj-o7XsQRg2ezIAFR1E78PAbnrXPyd0Ejh5Nu5ik/export?format=csv';
 
-        async function fetchStats() {
+        async function fetchData() {
             try {
                 const response = await fetch(sheetURL);
-                if (!response.ok) throw new Error("Network response was not ok");
                 const data = await response.text();
-                
-                // تحويل النص إلى أسطر
-                const rows = data.split('\n').slice(1); // نحذف العنوان
-                
-                // مصفوفات لتخزين البيانات
+                const rows = data.split('\n').slice(1); // تجاهل العنوان
+
+                // مصفوفات الإحصائيات
                 const apps = [], countries = [], cities = [], places = [];
+                
+                // حاوية التايم لاين
+                const timelineContainer = document.getElementById('timeline-container');
+                timelineContainer.innerHTML = ''; // تنظيف
 
                 rows.forEach(row => {
-                    // تنظيف السطر من الفواصل الزائدة
-                    const cols = row.split(','); 
-                    if(cols.length < 2) return;
+                    // تقسيم السطر حسب الفواصل (مع مراعاة النصوص الطويلة)
+                    // نستخدم regex بسيط للتعامل مع الفواصل داخل النصوص إن وجدت
+                    const cols = row.match(/(".*?"|[^",\s]+)(?=\s*,|\s*$)/g) || [];
                     
-                    // تنظيف النصوص من علامات التنصيص والفراغات
-                    const type = cols[0].replace(/['"]+/g, '').trim();
-                    const name = cols[1].replace(/['"]+/g, '').trim();
+                    if(cols.length < 2) return;
 
-                    if(type === 'app') apps.push(name);
-                    if(type === 'country') countries.push(name);
-                    if(type === 'city') cities.push(name);
-                    if(type === 'place') places.push(name);
+                    // تنظيف البيانات
+                    const type = cols[0].replace(/['"]+/g, '').trim();
+                    const title = cols[1].replace(/['"]+/g, '').trim();
+                    const desc = cols[2] ? cols[2].replace(/['"]+/g, '').trim() : '';
+                    const date = cols[3] ? cols[3].replace(/['"]+/g, '').trim() : '';
+
+                    // 1. توزيع الإحصائيات
+                    if(type === 'app') apps.push(title);
+                    if(type === 'country') countries.push(title);
+                    if(type === 'city') cities.push(title);
+                    if(type === 'place') places.push(title);
+
+                    // 2. بناء بطاقة الرحلة (إذا كان النوع journey)
+                    if(type === 'journey') {
+                        const cardHTML = `
+                        <div class="relative pr-8 animate-fade-in-up">
+                            <div class="absolute -right-2 top-0 w-4 h-4 bg-blue-600 rounded-full border-4 border-white shadow"></div>
+                            <div class="bg-white p-6 rounded-2xl border border-gray-100 hover:shadow-lg transition group">
+                                <span class="text-xs font-bold text-blue-600 bg-blue-50 px-2 py-1 rounded mb-2 inline-block">${date}</span>
+                                <h4 class="text-xl font-bold mb-2 text-gray-800 group-hover:text-blue-600 transition">${title}</h4>
+                                <p class="text-gray-600 leading-relaxed">${desc}</p>
+                            </div>
+                        </div>
+                        `;
+                        // إضافة البطاقة في بداية القائمة (لتظهر الأحدث أولاً) أو النهاية
+                        timelineContainer.insertAdjacentHTML('beforeend', cardHTML);
+                    }
                 });
 
-                // 1. تحديث الأرقام في الموقع
+                // تحديث أرقام الإحصائيات
                 document.getElementById('count-app').innerText = apps.length;
                 document.getElementById('count-country').innerText = countries.length;
                 document.getElementById('count-city').innerText = cities.length;
                 document.getElementById('count-place').innerText = places.length;
 
-                // 2. تحديث القوائم عند الضغط (On Click)
-                // البلدان
-                document.getElementById('btn-country').onclick = function() {
-                    openListModal('بلدان اكتشفناها 🌍', countries);
-                };
-                // المدن
-                document.getElementById('btn-city').onclick = function() {
-                    openListModal('مدن زرناها 🏙️', cities);
-                };
-                // المعالم
-                document.getElementById('btn-place').onclick = function() {
-                    openListModal('معالم زرناها 🏰', places);
-                };
+                // تحديث نوافذ القوائم
+                document.getElementById('btn-country').onclick = () => openListModal('بلدان اكتشفناها 🌍', countries);
+                document.getElementById('btn-city').onclick = () => openListModal('مدن زرناها 🏙️', cities);
+                document.getElementById('btn-place').onclick = () => openListModal('معالم زرناها 🏰', places);
 
             } catch (error) {
-                console.error('Error fetching data:', error);
-                // رسالة خطأ صغيرة في حال لم يعمل الرابط
-                // alert('تأكد أن الجدول مشارك كـ "Anyone with the link"');
+                console.error('Error:', error);
             }
         }
 
-        // تشغيل الدالة عند فتح الموقع
-        fetchStats();
+        fetchData();
     </script>
+
 
 </body>
 </html>
