@@ -227,6 +227,37 @@
             }
         });
     </script>
+    <div id="listModal" class="fixed inset-0 bg-black/80 z-[60] flex items-center justify-center backdrop-blur-sm hidden" onclick="closeListModal()">
+        <div class="bg-white p-6 rounded-2xl max-w-sm w-full text-center shadow-2xl animate-bounce-in mx-4" onclick="event.stopPropagation()">
+            <h3 id="listTitle" class="text-2xl font-bold mb-6 text-gray-800 border-b pb-4">العنوان</h3>
+            <ul id="listContent" class="space-y-3 text-lg text-gray-600 font-medium max-h-60 overflow-y-auto">
+                </ul>
+            <button onclick="closeListModal()" class="mt-8 w-full py-3 bg-gray-900 text-white rounded-xl hover:bg-gray-800 transition font-bold">إغلاق</button>
+        </div>
+    </div>
+
+    <script>
+        function openListModal(title, items) {
+            document.getElementById('listTitle').innerText = title;
+            const listContainer = document.getElementById('listContent');
+            listContainer.innerHTML = ""; // مسح القائمة القديمة
+            
+            items.forEach(item => {
+                let li = document.createElement("li");
+                li.className = "flex items-center justify-center gap-2";
+                li.innerHTML = `<span class="text-blue-500">•</span> ${item}`;
+                listContainer.appendChild(li);
+            });
+
+            document.getElementById('listModal').classList.remove('hidden');
+            document.getElementById('listModal').classList.add('flex');
+        }
+
+        function closeListModal() {
+            document.getElementById('listModal').classList.add('hidden');
+            document.getElementById('listModal').classList.remove('flex');
+        }
+    </script>
 
 </body>
 </html>
