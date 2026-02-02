@@ -111,28 +111,26 @@
             <div class="grid grid-cols-2 md:grid-cols-4 gap-6 mb-20 text-center">
                 
                 <a href="#apps" class="block p-4 bg-purple-50 rounded-2xl hover:bg-purple-100 transition transform hover:-translate-y-1">
-                    <div class="text-4xl font-bold text-purple-600 mb-2">12</div>
-                    <div class="text-gray-600 text-sm">تطبيقات صنعناها</div>
+                    <div id="count-app" class="text-4xl font-bold text-purple-600 mb-2">0</div>
+                    <div class="text-gray-600 text-sm">تطبيق صنعناه</div>
                 </a>
 
-                <div onclick="openListModal('بلدان اكتشفناها 🌍', ['الجزائر 🇩🇿'])" class="p-4 bg-green-50 rounded-2xl cursor-pointer hover:bg-green-100 transition transform hover:-translate-y-1">
-                    <div class="text-4xl font-bold text-green-600 mb-2">1</div>
+                <div id="btn-country" class="p-4 bg-green-50 rounded-2xl cursor-pointer hover:bg-green-100 transition transform hover:-translate-y-1">
+                    <div id="count-country" class="text-4xl font-bold text-green-600 mb-2">0</div>
                     <div class="text-gray-600 text-sm">بلدان اكتشفناها</div>
                 </div>
 
-                <div onclick="openListModal('مدن زرناها 🏙️', ['وهران', 'الجزائر العاصمة', 'قسنطينة'])" class="p-4 bg-blue-50 rounded-2xl cursor-pointer hover:bg-blue-100 transition transform hover:-translate-y-1">
-                    <div class="text-4xl font-bold text-blue-600 mb-2">3</div>
+                <div id="btn-city" class="p-4 bg-blue-50 rounded-2xl cursor-pointer hover:bg-blue-100 transition transform hover:-translate-y-1">
+                    <div id="count-city" class="text-4xl font-bold text-blue-600 mb-2">0</div>
                     <div class="text-gray-600 text-sm">مدن زرناها</div>
                 </div>
                 
-                <div onclick="openListModal('معالم زرناها 🏰', ['حصن سانتا كروز', 'قلعة الإسبان', 'المتحف الوطني أحمد زبانة'])" class="p-4 bg-red-50 rounded-2xl cursor-pointer hover:bg-red-100 transition transform hover:-translate-y-1">
-                    <div class="text-4xl font-bold text-red-600 mb-2">3</div>
+                <div id="btn-place" class="p-4 bg-red-50 rounded-2xl cursor-pointer hover:bg-red-100 transition transform hover:-translate-y-1">
+                    <div id="count-place" class="text-4xl font-bold text-red-600 mb-2">0</div>
                     <div class="text-gray-600 text-sm">معالم سياحية</div>
                 </div>
 
-                                                                               </div>
-    
-
+            </div>                                                           
 
             <h3 class="text-2xl font-bold mb-8 text-right border-r-4 border-blue-600 pr-4">سجل المغامرات</h3>
             <div class="relative border-r-2 border-gray-200 mr-4 space-y-12">
